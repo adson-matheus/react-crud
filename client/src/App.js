@@ -28,7 +28,7 @@ function App() {
       <form>
         <div className="p-5">
           <div className="form-group mb-3">
-            <label for="movie" className="col-sm-2 col-form-label">Movie Name:</label>
+            <label htmlFor="movie" className="col-sm-2 col-form-label">Movie Name:</label>
             <input
               type="text"
               className="form-control"
@@ -39,7 +39,7 @@ function App() {
             </input>
           </div>
           <div className="form-group mb-3">
-            <label for="review">Review:</label>
+            <label htmlFor="review">Review:</label>
             <textarea
               type="text"
               className="form-control"
@@ -60,14 +60,16 @@ function App() {
         <h1 className='h1'>Lista de Reviews Cadastrados</h1>
         <table className='table table-striped table-hover'>
           <thead className='thead-dark'>
-            <th>#</th>
-            <th>Movie Name</th>
-            <th>Review</th>
+            <tr>
+              <th>#</th>
+              <th>Movie Name</th>
+              <th>Review</th>
+            </tr>
           </thead>
           <tbody>
               {movieList.map((val)=>{
                 return (
-                  <tr>
+                  <tr key={val.id}>
                     <td>{val.id}</td>
                     <td>{val.movie}</td>
                     <td>{val.review}</td>
