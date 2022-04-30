@@ -5,7 +5,7 @@ import Axios from 'axios';
 function App() {
   const [movieName, setMovieName] = useState('');  
   const [movieReview, setMovieReview] = useState('');
-  const [movieList, setMovieList] = useState('');
+  const [movieList, setMovieList] = useState([]);
 
   useEffect(() => {
     Axios.get("http://localhost:3001/api/get").then((response) => {
@@ -24,8 +24,8 @@ function App() {
   };
   return (
     <div className="App">
-      <h1>CRUD</h1>
-      <form method="POST">
+      <h1 className='h1'>Adicionar Review</h1>
+      <form>
         <div className="p-5">
           <div className="form-group mb-3">
             <label for="movie" className="col-sm-2 col-form-label">Movie Name:</label>
@@ -54,6 +54,29 @@ function App() {
         </div>
         <button className="btn btn-outline-success align-center" onClick={submitReview}>Enviar</button>
       </form>
+
+      {/* Lista de Reviews */}
+      <div className='mt-3 p-5'>
+        <h1 className='h1'>Lista de Reviews Cadastrados</h1>
+        <table className='table table-striped table-hover'>
+          <thead className='thead-dark'>
+            <th>#</th>
+            <th>Movie Name</th>
+            <th>Review</th>
+          </thead>
+          <tbody>
+              {movieList.map((val)=>{
+                return (
+                  <tr>
+                    <td>{val.id}</td>
+                    <td>{val.movie}</td>
+                    <td>{val.review}</td>
+                  </tr>
+                )
+              })}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
